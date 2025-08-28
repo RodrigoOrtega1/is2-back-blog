@@ -3,15 +3,46 @@ Backend para aplicación de Blog de Reseñas creado para la materia Ingeniería 
 
 ## Bibliotecas requeridas
 - Flask
+- Flask-SQLAlchemy
+- Flask-Migrate
+- Alembic
 
 ## Funcionamiento
 
-Para correr el backend:
-```
-flask --app app.py run
+### Inicializar migraciones
+
+```sh
+flask db init
 ```
 
-Para correr las pruebas:
+### Crear nueva migración
+```sh
+flask db migrate -m "mensaje"
 ```
-python -m unittest test.py  
+
+### Aplicar migración a la base de datos
+
+```sh
+flask db upgrade
+```
+
+### Poblar la base de datos con datos dummy (opcional)
+
+```sh
+python app/seed.py
+```
+
+### Ejecutar el servidor
+
+```sh
+python run.py
+```
+
+El backend estará disponible en `http://localhost:5000`.
+
+### Ejecutar pruebas unitarias
+
+
+```sh
+python -m unittest tests/test.py
 ```
