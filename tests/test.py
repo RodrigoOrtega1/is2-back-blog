@@ -42,5 +42,30 @@ class GuardarPruebas(unittest.TestCase):
         response_data = response.get_json()
         self.assertEqual(response_data["error"], "Error procesando el payload")
 
+    def test_get_subjects(self):
+        with self.app.app_context():
+            from app.models import Subject
+            db.session.add(Subject(name="Fisica"))
+            db.session.commit()
+        response = self.app.get('/v0/subjects')
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertTrue(any(s["nombre"] == "Fisica" for s in data))
+
+    def test_get_reviews(self):
+        with self.app.app_context():
+            from app.models import Subject, Review
+            subject = Subject(name="Quimica")
+            db.session.add(subject)
+            db.session.commit()
+            review = Review(subject_id=subject.id, review="Muy interesante")
+            db.session.add(review)
+            db.session.commit()
+        response = self.app.get('/v0/reviews')
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertTrue(any(r["materia"] == "Quimica" and r["resena"] == "Muy interesante" for r in data))
+
+
 if __name__ == '__main__':
     unittest.main()
