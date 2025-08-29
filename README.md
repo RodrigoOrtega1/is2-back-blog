@@ -22,27 +22,16 @@ pip install -r requirements.txt
 
 ## Funcionamiento
 
-### Inicializar migraciones
-
-```sh
-flask db init
-```
-
-### Crear nueva migración
-```sh
-flask db migrate -m "mensaje"
-```
-
-### Aplicar migración a la base de datos
+### Aplicar migraciones a la base de datos
 
 ```sh
 flask db upgrade
 ```
 
-### Poblar la base de datos con datos dummy (opcional)
+### Poblar la base de datos con datos dummy
 
 ```sh
-python app/seed.py
+python -m app.seed
 ```
 
 ### Ejecutar el servidor
