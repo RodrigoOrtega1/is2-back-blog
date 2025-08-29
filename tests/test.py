@@ -20,7 +20,7 @@ class GuardarPruebas(unittest.TestCase):
             "materia": "Matematicas",
             "resena": "Gran clase"
         }
-        response = self.app.post('/v0/reviews', json=payload)
+        response = self.client.post('/v0/reviews', json=payload)
         self.assertEqual(response.status_code, 201)
         response_data = response.get_json()
         self.assertEqual(response_data["materia"], payload["materia"])
@@ -30,7 +30,7 @@ class GuardarPruebas(unittest.TestCase):
         payload = {
             "resena" : "Gran clase"
         }
-        response = self.app.post('v0/reviews', json=payload)
+        response = self.client.post('/v0/reviews', json=payload)
         self.assertEqual(response.status_code, 400)
         response_data = response.get_json()
         self.assertEqual(response_data["error"], "Payload invalido. Se requieren los campos 'materia' y 'resena'")
@@ -40,13 +40,13 @@ class GuardarPruebas(unittest.TestCase):
             "materia" : "",
             "resena" : ""
         }
-        response = self.app.post('v0/reviews', json=payload)
+        response = self.client.post('/v0/reviews', json=payload)
         self.assertEqual(response.status_code, 400)
         response_data = response.get_json()
         self.assertIn("error", response_data)
     
     def test_post_invalido(self):
-        response = self.app.post('/v0/reviews', headers={"Content-Type": "application/json"})
+        response = self.client.post('/v0/reviews', headers={"Content-Type": "application/json"})
         self.assertEqual(response.status_code, 400)
         response_data = response.get_json()
         self.assertEqual(response_data["error"], "Error procesando el payload")
@@ -56,7 +56,7 @@ class GuardarPruebas(unittest.TestCase):
             from app.models import Subject
             db.session.add(Subject(name="Fisica"))
             db.session.commit()
-        response = self.app.get('/v0/subjects')
+        response = self.client.get('/v0/subjects')
         self.assertEqual(response.status_code, 200)
         data = response.get_json()
         self.assertTrue(any(s["nombre"] == "Fisica" for s in data))
@@ -70,7 +70,7 @@ class GuardarPruebas(unittest.TestCase):
             review = Review(subject_id=subject.id, review="Muy interesante")
             db.session.add(review)
             db.session.commit()
-        response = self.app.get('/v0/reviews')
+        response = self.client.get('/v0/reviews')
         self.assertEqual(response.status_code, 200)
         data = response.get_json()
         self.assertTrue(any(r["materia"] == "Quimica" and r["resena"] == "Muy interesante" for r in data))
