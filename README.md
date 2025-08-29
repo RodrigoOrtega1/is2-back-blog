@@ -9,6 +9,17 @@ Backend para aplicación de Blog de Reseñas creado para la materia Ingeniería 
 - flask-cors
 - python-dotenv
 
+### Creación y activación de entorno virtual
+```sh
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### Instalación de bibliotecas
+```sh
+pip install -r requirements.txt
+```
+
 ## Funcionamiento
 
 ### Inicializar migraciones
@@ -41,6 +52,8 @@ python run.py
 ```
 
 El backend estará disponible en `http://localhost:5000`.
+
+Opcionalmente, se puede ejecutar en otro puerto, creando un archivo .env en el directorio raíz del proyecto, con la variable de entorno: `PORT=5001` con el valor del puerto a utilizar.
 
 ### Ejecutar pruebas unitarias
 
