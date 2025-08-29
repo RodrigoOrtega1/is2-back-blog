@@ -2,10 +2,12 @@
 Backend para aplicación de Blog de Reseñas creado para la materia Ingeniería de Software 2
 
 ## Bibliotecas requeridas
+- SQLAlchemy
 - Flask
-- Flask-SQLAlchemy
 - Flask-Migrate
-- Alembic
+- Flask-SQLAlchemy
+- flask-cors
+- python-dotenv
 
 ## Funcionamiento
 
