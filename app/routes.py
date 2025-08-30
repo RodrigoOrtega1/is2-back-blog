@@ -36,3 +36,22 @@ def agregar_resena():
             return jsonify({"error": "Payload invalido. Se requieren los campos 'materia' y 'resena'"}), 400
     except Exception:
         return jsonify({"error": "Error procesando el payload"}), 400
+
+@bp.route('/v0/reviews', methods=['GET'])
+def obtener_resenas():
+    reviews = Review.query.all()
+    result = []
+    for review in reviews:
+        subject = Subject.query.get(review.subject_id)
+        result.append({
+            "id": review.id,
+            "materia": subject.name if subject else None,
+            "resena": review.review
+        })
+    return jsonify(result), 200
+
+@bp.route('/v0/subjects', methods=['GET'])
+def obtener_materias():
+    subjects = Subject.query.all()
+    result = [{"id": subject.id, "nombre": subject.name} for subject in subjects]
+    return jsonify(result), 200
