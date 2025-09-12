@@ -1,0 +1,9 @@
+services:
+  backend:
+    image: "ghcr.io/rodrigoortega1/is2-back-blog:latest"
+    ports:
+      - "5000:8000"
+  frontend:
+    image: "ghcr.io/1rv1nn/blog-resenas-materias:v1.0.0"
+    ports:
+      - "3000:3000"
