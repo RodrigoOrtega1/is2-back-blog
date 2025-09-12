@@ -31,7 +31,8 @@ COPY --from=builder /root/.local /home/appuser/.local
 COPY app/ ./app/
 COPY run.py ./
 COPY requirements.txt ./
-COPY app/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# Copy your custom supervisord config to replace the default one
+COPY app/supervisord.conf /etc/supervisor/supervisord.conf
 COPY app/gunicorn.conf.py ./gunicorn.conf.py
 
 # Create instance directory with proper permissions
@@ -47,4 +48,4 @@ ENV PATH="/home/appuser/.local/bin:$PATH"
 
 EXPOSE 8000
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
