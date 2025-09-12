@@ -34,7 +34,9 @@ COPY requirements.txt ./
 COPY app/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY app/gunicorn.conf.py ./gunicorn.conf.py
 
-RUN chown -R appuser:appuser /app
+# Create instance directory with proper permissions
+RUN mkdir -p /app/instance && \
+    chown -R appuser:appuser /app
 
 RUN mkdir -p /var/log/supervisor && \
     chown -R appuser:appuser /var/log/supervisor
