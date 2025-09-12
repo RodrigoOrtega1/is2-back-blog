@@ -7,3 +7,5 @@ services:
     image: "ghcr.io/1rv1nn/blog-resenas-materias:v1.0.0"
     ports:
       - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:5000
