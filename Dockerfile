@@ -31,11 +31,9 @@ COPY --from=builder /root/.local /home/appuser/.local
 COPY app/ ./app/
 COPY run.py ./
 COPY requirements.txt ./
-# Copy your custom supervisord config to replace the default one
 COPY app/supervisord.conf /etc/supervisor/supervisord.conf
 COPY app/gunicorn.conf.py ./gunicorn.conf.py
 
-# Create instance directory with proper permissions
 RUN mkdir -p /app/instance && \
     chown -R appuser:appuser /app
 

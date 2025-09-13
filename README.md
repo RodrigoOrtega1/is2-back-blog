@@ -22,6 +22,13 @@ pip install -r requirements.txt
 
 ## Funcionamiento
 
+### Para ejecutar el backend y frontend con un docker compose
+
+En la carpeta raíz del proyecto escribir:
+```sh
+docker-compose up
+```
+
 ### Aplicar migraciones a la base de datos
 
 ```sh
