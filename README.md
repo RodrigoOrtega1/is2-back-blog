@@ -29,6 +29,8 @@ En la carpeta raíz del proyecto escribir:
 docker-compose up
 ```
 
+La aplicación estará disponible en `http://localhost:3000`.
+
 ### Aplicar migraciones a la base de datos
 
 ```sh
