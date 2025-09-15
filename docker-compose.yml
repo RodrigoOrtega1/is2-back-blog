@@ -1,13 +1,25 @@
 services:
   backend:
-    image: "ghcr.io/rodrigoortega1/is2-back-blog:latest"
-    ports:
-      - "5000:8000"
-  frontend:
-    image: "ghcr.io/1rv1nn/blog-resenas-materias:v1.0.0"
-    ports:
-      - "3000:3000"
+    # image: "ghcr.io/rodrigoortega1/is2-back-blog:latest"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     environment:
-      - VITE_API_URL=http://localhost:5000
+      - BACKEND_PORT:${BACKEND_PORT}
+    ports:
+      - "${BACKEND_PORT}:8000"
+  frontend:
+    # image: "ghcr.io/1rv1nn/blog-resenas-materias:v1.0.0"
+    build:
+      context: ./../Materias_front/blog-resenas-materias
+      dockerfile: dockerfile
+      args:
+        - VITE_API_URL${VITE_API_URL}
+    env_file:
+      - .env
+    ports:
+      - "${FRONTEND_PORT}:3000"
     depends_on:
       - backend
