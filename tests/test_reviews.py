@@ -73,6 +73,5 @@ class GuardarPruebas(unittest.TestCase):
         data = response.get_json()
         self.assertTrue(any(r["materia"] == "Quimica" and r["resena"] == "Muy interesante" for r in data))
 
-
 if __name__ == '__main__':
     unittest.main()
