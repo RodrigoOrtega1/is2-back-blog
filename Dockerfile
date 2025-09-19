@@ -12,8 +12,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 FROM python:3.12-slim-bullseye AS runtime
-LABEL org.opencontainers.image.source=https://github.com/RodrigoOrtega1/is2-back-blog
-LABEL org.opencontainers.image.description="Contenedor para el backend del blog"
 
 RUN apt-get update && apt-get install -y \
     supervisor \
