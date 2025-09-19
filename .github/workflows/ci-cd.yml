@@ -9,6 +9,10 @@ on:
     branches:
       - main
 
+permissions:
+      contents: read
+      packages: write
+
 # Concurrency to ensure only one workflow run per branch at a time.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
