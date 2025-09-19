@@ -9,10 +9,6 @@ on:
     branches:
       - main
 
-permissions:
-      contents: read
-      packages: write
-
 # Concurrency to ensure only one workflow run per branch at a time.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -61,7 +57,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PAT }}
 
       - name: Extract Docker Metadata
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
