@@ -1,6 +1,13 @@
 # is2-back-blog
 Backend para aplicación de Blog de Reseñas creado para la materia Ingeniería de Software 2
 
+## Equipo
+
+- Cruz Gonzalez Irvin Javier
+- Hernandez Vela Daniel
+- Ortega Venegas Rodrigo Aldair
+- Ugalde Flores Jimena
+
 ## Bibliotecas requeridas
 - SQLAlchemy
 - Flask
