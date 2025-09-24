@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      - BACKEND_PORT:${BACKEND_PORT}
+      - BACKEND_PORT=${BACKEND_PORT}
     ports:
       - "${BACKEND_PORT}:8000"
   frontend:
@@ -16,7 +16,7 @@ services:
       context: ./../Materias_front/blog-resenas-materias
       dockerfile: dockerfile
       args:
-        - VITE_API_URL${VITE_API_URL}
+        - VITE_API_URL=${VITE_API_URL}
     env_file:
       - .env
     ports:
